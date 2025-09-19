@@ -1,5 +1,10 @@
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 function Card({searchByTag, image}){
     const tags = image.tags.split(", ");
+    const navigate = useNavigate();
+    const imgId = image.id;
 
     function handleClick(tg){
         searchByTag(tg);
@@ -7,9 +12,16 @@ function Card({searchByTag, image}){
 
     return(
         <div className="max-w-sm rounded overflow-hidden shadow-lg mb-4">
-            <img src={image.webformatURL} 
+            {/* <img src={image.webformatURL} 
                 alt="" 
-                className="w-full" />
+                className="w-full" 
+                onClick={() => navigate(`/image/${imgId}`)}/> */}
+
+                <Link to={`/image/${imgId}`} state={{image}}>
+                    <img src={image.webformatURL} 
+                    alt="" 
+                    className="w-full" />
+                </Link>
 
             <div className="px-6 py-4">
                 <div className="font-bold text-gray-700 text-xl mb-2">
